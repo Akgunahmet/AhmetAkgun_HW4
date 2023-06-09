@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Protocol
 
 protocol HomeViewControllerProtocol: AnyObject {
     func setupTableView()
@@ -17,6 +18,7 @@ protocol HomeViewControllerProtocol: AnyObject {
 }
 
 class HomeViewController: BaseViewController  {
+    
     @IBOutlet weak var tableView: UITableView!
     
     var presenter: HomePresenterProtocol!
@@ -26,16 +28,19 @@ class HomeViewController: BaseViewController  {
         
         presenter?.viewDidLoad()
     
-        
     }
 }
 
 extension HomeViewController: HomeViewControllerProtocol {
+
+// MARK: - Function
+    
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(cellType: SongsCell.self)
     }
+    
     func reloadData() {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
@@ -56,8 +61,10 @@ extension HomeViewController: HomeViewControllerProtocol {
         hideLoading()
 
     }
-    
 }
+
+// MARK: - TableView Extension
+
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.numberOfItems ?? 0
@@ -75,6 +82,7 @@ extension HomeViewController: UITableViewDataSource {
     }
   
 }
+
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -92,7 +100,10 @@ extension HomeViewController: UITableViewDelegate {
     
 }
 
+// MARK: - SearchBar Extension
+
 extension HomeViewController: UISearchBarDelegate {
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         if let searchTerm = searchBar.text?.removingTurkishDiacritics().uppercased() {
@@ -102,6 +113,7 @@ extension HomeViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+
 extension String {
     func removingTurkishDiacritics() -> String {
         return self.folding(options: .diacriticInsensitive, locale: .current)

@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Protocol
+
 protocol SongsCellProtocol: AnyObject {
     func setImage(_ image: UIImage)
     func setTrackName(_ text: String)
@@ -16,23 +18,21 @@ protocol SongsCellProtocol: AnyObject {
 }
 
 final class SongsCell: UITableViewCell {
-
+    
+// MARK: - Outlet
+    
     @IBOutlet weak var artWorkURLImage: UIImageView!
-
     @IBOutlet weak var trackName: UILabel!
-
     @IBOutlet weak var artistName: UILabel!
-
     @IBOutlet weak var collectionName: UILabel!
-
     @IBOutlet weak var playButton: UIButton!
-
+    
     var cellPresenter: SongsCellPresenterProtocol! {
-        didSet {
+    didSet {
             cellPresenter.load()
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -40,29 +40,34 @@ final class SongsCell: UITableViewCell {
         UIView.animate(withDuration: 0.5) {
             self.transform = CGAffineTransform.identity
         }
-
+        
     }
 
+// MARK: - Action
+    
     @IBAction func playButtonTapped(_ sender: UIButton) {
-            cellPresenter.togglePlayback()
-
-        }
+        cellPresenter.togglePlayback()
+        
+    }
 }
 
 extension SongsCell: SongsCellProtocol {
+    
+// MARK: - Function
+    
     func setTrackName(_ text: String) {
         trackName.text = text
     }
-
+    
     func setArtistName(_ text: String) {
         artistName.text = text
     }
-
+    
     func setCollectionName(_ text: String) {
         collectionName.text = text
     }
-
-
+    
+    
     func setImage(_ image: UIImage) {
         DispatchQueue.main.async {
             self.artWorkURLImage.image = image
@@ -71,7 +76,7 @@ extension SongsCell: SongsCellProtocol {
     func setButtonImage(_ image: UIImage?) {
         playButton.setImage(image, for: .normal)
     }
-
+    
 }
 
 

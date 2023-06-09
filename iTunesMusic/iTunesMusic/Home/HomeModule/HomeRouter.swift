@@ -8,6 +8,8 @@
 import Foundation
 import iTunesMusicAPI
 
+// MARK: - Protocol
+
 protocol HomeRouterProtocol {
     func navigate(_ route: HomeRoutes)
 }
@@ -34,6 +36,8 @@ final class HomeRouter {
 }
 
 extension HomeRouter: HomeRouterProtocol {
+    
+// MARK: - Function
     
     func navigate(_ route: HomeRoutes) {
         switch route {

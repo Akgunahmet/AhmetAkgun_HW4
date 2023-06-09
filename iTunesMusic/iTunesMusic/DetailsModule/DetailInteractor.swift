@@ -8,6 +8,8 @@
 import Foundation
 import iTunesMusicAPI
 
+// MARK: - Protocol
+
 protocol DetailInteractorProtocol {
     
 }

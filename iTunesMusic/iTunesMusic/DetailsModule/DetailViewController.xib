@@ -18,6 +18,8 @@
                 <outlet property="lblKind" destination="6El-NU-bhh" id="wGF-td-EMf"/>
                 <outlet property="lblTrackName" destination="aUn-1j-5u4" id="2mm-Ua-YAP"/>
                 <outlet property="lblTrackPrice" destination="xtY-XE-bHb" id="qeN-sq-XAm"/>
+                <outlet property="playButton" destination="bQ2-Te-7Yu" id="apB-JX-K7v"/>
+                <outlet property="progressView" destination="JNv-i2-xvj" id="8mZ-kd-gc7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -104,7 +106,13 @@
                             <imageReference key="image" image="playy-2" symbolScale="default"/>
                         </backgroundConfiguration>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="playButtonClicked:" destination="-1" eventType="touchUpInside" id="uMs-Kb-a2T"/>
+                    </connections>
                 </button>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JNv-i2-xvj">
+                    <rect key="frame" x="121" y="641" width="150" height="4"/>
+                </progressView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -114,6 +122,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bQ2-Te-7Yu" secondAttribute="bottom" constant="203" id="K6J-gH-puH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="trf-ih-s9f" secondAttribute="trailing" constant="16" id="KI6-Ms-41U"/>
                 <constraint firstItem="bQ2-Te-7Yu" firstAttribute="top" secondItem="5dX-pC-uln" secondAttribute="bottom" constant="25" id="KfI-H6-QEa"/>
+                <constraint firstItem="JNv-i2-xvj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="121" id="Pvh-A1-7ZZ"/>
                 <constraint firstItem="bQ2-Te-7Yu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="156" id="Ujc-g7-rZv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5dX-pC-uln" secondAttribute="trailing" constant="16" id="V7C-EF-M7i"/>
                 <constraint firstItem="trf-ih-s9f" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Yan-HA-hR1"/>
@@ -121,7 +130,9 @@
                 <constraint firstItem="5dX-pC-uln" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="fN6-gV-nC8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BKr-mr-HI6" secondAttribute="trailing" constant="16" id="i1w-PE-Zot"/>
                 <constraint firstItem="BKr-mr-HI6" firstAttribute="top" secondItem="trf-ih-s9f" secondAttribute="bottom" constant="30" id="j6s-bS-p1V"/>
+                <constraint firstItem="JNv-i2-xvj" firstAttribute="top" secondItem="bQ2-Te-7Yu" secondAttribute="bottom" constant="26" id="nXX-Rs-UAA"/>
                 <constraint firstItem="BKr-mr-HI6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ng3-Yd-JzF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JNv-i2-xvj" secondAttribute="trailing" constant="122" id="qWi-cm-YWX"/>
             </constraints>
             <point key="canvasLocation" x="188.54961832061068" y="1.4084507042253522"/>
         </view>

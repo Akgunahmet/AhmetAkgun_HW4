@@ -7,13 +7,16 @@
 import Foundation
 import iTunesMusicAPI
 
+// MARK: - Protocol
 
 protocol HomePresenterProtocol: AnyObject {
+    
     func viewDidLoad()
     var numberOfItems: Int { get }
     func song(_ index: Int) -> Results?
     func fetchSongs(_ word: String)
    func didSelectRowAt(index: Int)
+    
 }
 
 class HomePresenter {
@@ -36,7 +39,11 @@ class HomePresenter {
     }
     
 }
+
 extension HomePresenter: HomePresenterProtocol {
+    
+// MARK: - Function
+    
     func viewDidLoad() {
         view.setupTableView()
         
@@ -62,10 +69,11 @@ extension HomePresenter: HomePresenterProtocol {
         songs.count
     }
     
-  
 
 }
+// MARK: - Extension HomeInterOutput
 extension HomePresenter: HomeInteractorOutput {
+    
     func fetchSongsOutput(_ result: SongsSourcesResult) {
         view.hideLoadingView()
         switch result {
@@ -76,4 +84,5 @@ extension HomePresenter: HomeInteractorOutput {
             view.showError(error.localizedDescription)
         }
     }
+    
 }
