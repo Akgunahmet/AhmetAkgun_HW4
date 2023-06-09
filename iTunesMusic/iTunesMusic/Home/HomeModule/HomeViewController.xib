@@ -23,7 +23,7 @@
                     <rect key="frame" x="0.0" y="135" width="393" height="717"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="t1o-Y7-5m2">
+                <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t1o-Y7-5m2">
                     <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>

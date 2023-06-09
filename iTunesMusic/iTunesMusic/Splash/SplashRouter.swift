@@ -36,17 +36,7 @@ final class SplashRouter {
 extension SplashRouter: SplashRouterProtocol {
     
     func navigate(_ route: SplashRoutes) {
-        
-//        switch route {
-//        case .homeScreen:
-//            guard let window = viewController?.view.window else { return }
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-////            let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-//            let homeVC = HomeRouter.createModule()
-//            let navigationController = UINavigationController(rootViewController: homeVC)
-//            window.makeKeyAndVisible()
-//            window.rootViewController = navigationController
-//        }
+
         switch route {
         case .homeScreen:
             guard let window = viewController?.view.window else { return }

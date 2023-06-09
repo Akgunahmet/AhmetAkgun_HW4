@@ -22,13 +22,19 @@ class HomeViewController: BaseViewController  {
     @IBOutlet weak var tableView: UITableView!
     
     var presenter: HomePresenterProtocol!
- 
+    private var searchTimer: Timer?
+    private let searchDelay: TimeInterval = 1.3
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter?.viewDidLoad()
     
     }
+    
+    private func performSearch(with searchTerm: String) {
+            let cleanedSearchTerm = searchTerm.removingTurkishDiacritics().uppercased()
+            presenter?.fetchSongs(cleanedSearchTerm)
+        }
 }
 
 extension HomeViewController: HomeViewControllerProtocol {
@@ -104,13 +110,26 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: UISearchBarDelegate {
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//
+//        if let searchTerm = searchBar.text?.removingTurkishDiacritics().uppercased() {
+//            presenter?.fetchSongs(searchTerm)
+//        }
+//
+//        searchBar.resignFirstResponder()
+//    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchTimer?.invalidate() // Önceki bir arama süresini iptal et
         
-        if let searchTerm = searchBar.text?.removingTurkishDiacritics().uppercased() {
-            presenter?.fetchSongs(searchTerm)
+        let trimmedText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if !trimmedText.isEmpty {
+            // Yeni bir arama süresi başlat
+            searchTimer = Timer.scheduledTimer(withTimeInterval: searchDelay, repeats: false) { [weak self] _ in
+                self?.performSearch(with: trimmedText)
+            }
         }
-
-        searchBar.resignFirstResponder()
     }
 }
 
@@ -119,6 +138,8 @@ extension String {
         return self.folding(options: .diacriticInsensitive, locale: .current)
     }
 }
+
+
 
 //
 //import UIKit

@@ -8,20 +8,42 @@
 import Foundation
 
 protocol DetailRouterProtocol {
-   
+
 }
 
 final class DetailRouter: DetailRouterProtocol {
-    
+
     weak var viewController: DetailViewController?
-    
+
     static func createModule() -> DetailViewController {
          let view = DetailViewController()
          let router = DetailRouter()
-         let presenter = DetailPresenter(view: view, router: router)
+//         let interactor = DetailInteractor()
+        let presenter = DetailPresenter(view: view, router: router)
          view.presenter = presenter
          router.viewController = view
          return view
      }
-    
+
 }
+
+//import Foundation
+//
+//protocol DetailRouterProtocol {
+//
+//}
+//
+//final class DetailRouter: DetailRouterProtocol {
+//
+//    weak var viewController: DetailViewController?
+//
+//    static func createModule() -> DetailViewController {
+//         let view = DetailViewController()
+//         let router = DetailRouter()
+//         let presenter = DetailPresenter(view: view, router: router)
+//         view.presenter = presenter
+//         router.viewController = view
+//         return view
+//     }
+//
+//}

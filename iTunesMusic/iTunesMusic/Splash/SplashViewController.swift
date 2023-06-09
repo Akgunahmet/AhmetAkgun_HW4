@@ -22,13 +22,6 @@ final class SplashViewController: BaseViewController {
         presenter.viewDidAppear()
     }
 
-//    var presenter: SplashPresenterProtocol!
-//
-//     override func viewDidAppear(_ animated: Bool) {
-//         super.viewDidAppear(animated)
-//         presenter.viewDidAppear()
-//     }
-
 }
 
 extension SplashViewController: SplashViewControllerProtocol {
