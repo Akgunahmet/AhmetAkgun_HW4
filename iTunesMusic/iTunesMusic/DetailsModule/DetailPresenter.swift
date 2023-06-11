@@ -9,7 +9,7 @@ import Foundation
 import iTunesMusicAPI
 import SDWebImage
 import AVFoundation
-import CoreData
+
 
 // MARK: - Protocol
 
@@ -24,6 +24,7 @@ protocol DetailPresenterProtocol {
     func deleteFavoriteArtist(artistName: String, collectionName: String, trackName: String)
     func isFavoriteArtist(artistName: String, collectionName: String, trackName: String) -> Bool
     var isFavorite: Bool { get set }
+   func showFavoriteArtistsPopUp(completion: @escaping ([String]) -> Void)
 
 }
 
@@ -36,23 +37,38 @@ final class DetailPresenter {
     unowned var view: DetailViewControllerProtocol!
     var source: Results?
     let router: DetailRouterProtocol!
-    var isFavorite = false
+    var interactor: DetailInteractorProtocol!
+    var isFavorite = false {
+        didSet {
+            view.setFavoriteButtonImage(isFavorite: isFavorite)
+        }
+    }
+    
 
 
 // MARK: - Initialize
 
     init(
         view: DetailViewControllerProtocol,
-        router: DetailRouterProtocol
+        router: DetailRouterProtocol,
+        interactor: DetailInteractorProtocol
     ) {
         self.view = view
         self.router = router
+        self.interactor = interactor
     }
 
 }
 // MARK: - Extension
 
 extension DetailPresenter: DetailPresenterProtocol {
+    func showFavoriteArtistsPopUp(completion: @escaping ([String]) -> Void) {
+        interactor.showFavoriteArtist(completion: completion)
+    }
+    
+    
+
+    
 
 // MARK: - Function
 
@@ -105,64 +121,20 @@ extension DetailPresenter: DetailPresenterProtocol {
     }
 
     func saveFavoriteArtist(artistName: String, collectionName: String, trackName: String) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let managedContext = appDelegate.persistentContainer.viewContext
-
-        let entity = NSEntityDescription.entity(forEntityName: "ArtistFavorites", in: managedContext)!
-        let favoriteArtist = NSManagedObject(entity: entity, insertInto: managedContext)
-
-        favoriteArtist.setValue(artistName, forKey: "favoriteArtist")
-        favoriteArtist.setValue(collectionName, forKey: "favoriteCollection")
-        favoriteArtist.setValue(trackName, forKey: "favoriteTrackName")
-
-        do {
-            try managedContext.save()
-            print("Favorite artist saved.")
-            isFavorite = true
-            view.setFavoriteButtonImage(isFavorite: true)
-        } catch let error as NSError {
-            print("Could not save favorite artist. \(error), \(error.userInfo)")
-        }
+        interactor.saveFavoriteArtist(artistName: artistName, collectionName: collectionName, trackName: trackName)
+        isFavorite = true
+        view.setFavoriteButtonImage(isFavorite: true)
+        view.showAlert(title: "", message: "Favorite artist saved.")
     }
-
     func deleteFavoriteArtist(artistName: String, collectionName: String, trackName: String) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let managedContext = appDelegate.persistentContainer.viewContext
-
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ArtistFavorites")
-        fetchRequest.predicate = NSPredicate(format: "favoriteArtist == %@ AND favoriteCollection == %@ AND favoriteTrackName == %@", artistName, collectionName, trackName)
-
-        do {
-            let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
-            if let favoriteArtist = results?.first {
-                managedContext.delete(favoriteArtist)
-                try managedContext.save()
-                print("Favorite artist deleted.")
-                isFavorite = false
-                view.setFavoriteButtonImage(isFavorite: false)
-            }
-        } catch let error as NSError {
-            print("Could not delete favorite artist. \(error), \(error.userInfo)")
-        }
+        interactor.deleteFavoriteArtist(artistName: artistName, collectionName: collectionName, trackName: trackName)
+        isFavorite = false
+        view.setFavoriteButtonImage(isFavorite: false)
+        view.showAlert(title: "", message: "Removed from favorites.")
     }
-
     func isFavoriteArtist(artistName: String, collectionName: String, trackName: String) -> Bool {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let managedContext = appDelegate.persistentContainer.viewContext
-
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ArtistFavorites")
-        fetchRequest.predicate = NSPredicate(format: "favoriteArtist == %@ AND favoriteCollection == %@ AND favoriteTrackName == %@", artistName, collectionName, trackName)
-
-        do {
-            let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
-            return results?.count ?? 0 > 0
-        } catch let error as NSError {
-            print("Could not fetch favorite artist. \(error), \(error.userInfo)")
-            return false
-        }
+        interactor.isFavoriteArtist(artistName: artistName, collectionName: collectionName, trackName: trackName)
     }
-
-
 
 
 // MARK: - Private Function
@@ -248,8 +220,6 @@ extension DetailPresenter: DetailPresenterProtocol {
     }
 }
 
-
-
 //import Foundation
 //import iTunesMusicAPI
 //import SDWebImage
@@ -266,6 +236,8 @@ extension DetailPresenter: DetailPresenterProtocol {
 //    func togglePlayPause()
 //    func resetPlaybackProgress()
 //    func saveFavoriteArtist(artistName: String, collectionName: String, trackName: String)
+//    func deleteFavoriteArtist(artistName: String, collectionName: String, trackName: String)
+//    func isFavoriteArtist(artistName: String, collectionName: String, trackName: String) -> Bool
 //    var isFavorite: Bool { get set }
 //
 //}
@@ -320,6 +292,12 @@ extension DetailPresenter: DetailPresenterProtocol {
 //        view.setKind(details.primaryGenreName ?? "")
 //        view.setTrackPrice(details.trackPrice ?? 0)
 //        view.setCollectionPrice(details.collectionPrice ?? 0)
+//        
+//        let artistName = details.artistName ?? ""
+//            let collectionName = details.collectionName ?? ""
+//            let trackName = details.trackName ?? ""
+//            isFavorite = isFavoriteArtist(artistName: artistName, collectionName: collectionName, trackName: trackName)
+//            view.setFavoriteButtonImage(isFavorite: isFavorite)
 //
 //    }
 //
@@ -362,6 +340,42 @@ extension DetailPresenter: DetailPresenterProtocol {
 //        }
 //    }
 //
+//    func deleteFavoriteArtist(artistName: String, collectionName: String, trackName: String) {
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ArtistFavorites")
+//        fetchRequest.predicate = NSPredicate(format: "favoriteArtist == %@ AND favoriteCollection == %@ AND favoriteTrackName == %@", artistName, collectionName, trackName)
+//
+//        do {
+//            let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
+//            if let favoriteArtist = results?.first {
+//                managedContext.delete(favoriteArtist)
+//                try managedContext.save()
+//                print("Favorite artist deleted.")
+//                isFavorite = false
+//                view.setFavoriteButtonImage(isFavorite: false)
+//            }
+//        } catch let error as NSError {
+//            print("Could not delete favorite artist. \(error), \(error.userInfo)")
+//        }
+//    }
+//
+//    func isFavoriteArtist(artistName: String, collectionName: String, trackName: String) -> Bool {
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ArtistFavorites")
+//        fetchRequest.predicate = NSPredicate(format: "favoriteArtist == %@ AND favoriteCollection == %@ AND favoriteTrackName == %@", artistName, collectionName, trackName)
+//
+//        do {
+//            let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
+//            return results?.count ?? 0 > 0
+//        } catch let error as NSError {
+//            print("Could not fetch favorite artist. \(error), \(error.userInfo)")
+//            return false
+//        }
+//    }
 //
 //
 //
@@ -448,4 +462,6 @@ extension DetailPresenter: DetailPresenterProtocol {
 //        }
 //    }
 //}
+//
+//
 

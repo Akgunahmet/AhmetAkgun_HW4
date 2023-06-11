@@ -21,6 +21,7 @@ class HomeViewController: BaseViewController  {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     var presenter: HomePresenterProtocol!
     private var searchTimer: Timer?
     private let searchDelay: TimeInterval = 1.3
@@ -28,7 +29,13 @@ class HomeViewController: BaseViewController  {
         super.viewDidLoad()
         
         presenter?.viewDidLoad()
-    
+        searchBar.layer.borderWidth = 0
+        searchBar.backgroundImage = UIImage()
+        searchBar.barTintColor = UIColor.white
+        searchBar.searchTextField.backgroundColor = UIColor.white
+        searchBar.searchTextField.textColor = UIColor.black
+        navigationController?.navigationBar.barTintColor = .black
+
     }
     
     private func performSearch(with searchTerm: String) {
@@ -84,6 +91,7 @@ extension HomeViewController: UITableViewDataSource {
         if let songs = presenter?.song(indexPath.row) {
             cell.cellPresenter = SongsCellPresenter(view: cell, songs: songs)
         }
+      
         return cell
     }
   

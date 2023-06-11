@@ -8,58 +8,114 @@
 
 import Foundation
 import iTunesMusicAPI
-import UIKit
 import CoreData
+
 
 // MARK: - Protocol
 
-protocol DetailInteractorDelegate: AnyObject {
-    func didSaveDataToCoreData()
-}
-
 protocol DetailInteractorProtocol {
-    func saveDataToCoreData(source: Results?)
+    func saveFavoriteArtist(artistName: String, collectionName: String, trackName: String)
+    func deleteFavoriteArtist(artistName: String, collectionName: String, trackName: String)
+    func isFavoriteArtist(artistName: String, collectionName: String, trackName: String) -> Bool
+    func showFavoriteArtist(completion: @escaping ([String]) -> Void)
 }
 
 protocol DetailInteractorOutputProtocol {
-    func saveDataToCoreData()
+    func saveFavoriteArtistOutput()
+
 }
 
-final class DetailInteractor: DetailInteractorProtocol {
-    weak var delegate: DetailInteractorDelegate?
+
+final class DetailInteractor {
+    var output: DetailInteractorOutputProtocol?
+    var presenter: DetailPresenter?
+
+
+ 
+}
+
+extension DetailInteractor: DetailInteractorProtocol {
+
+    func showFavoriteArtist(completion: @escaping ([String]) -> Void) {
+         
+          
+          let managedContext = AppDelegate.containerPersistent.viewContext
+          let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ArtistFavorites")
+
+          do {
+              let favoriteArtists = try managedContext.fetch(fetchRequest)
+              var artistInfoList: [String] = []
+              
+              for artist in favoriteArtists {
+                  if let artistName = artist.value(forKeyPath: "favoriteArtist") as? String,
+                     let collectionName = artist.value(forKeyPath: "favoriteCollection") as? String,
+                     let trackName = artist.value(forKeyPath: "favoriteTrackName") as? String {
+                      
+                      let artistInfo = "\(artistName) - \(collectionName) - \(trackName)"
+                      artistInfoList.append(artistInfo)
+                  }
+              }
+              
+              completion(artistInfoList)
+              
+          } catch let error as NSError {
+              print("Could not fetch favorite artists. \(error), \(error.userInfo)")
+              completion([])
+          }
+      }
+
+    func saveFavoriteArtist(artistName: String, collectionName: String, trackName: String) {
+        
+            let managedContext = AppDelegate.containerPersistent.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "ArtistFavorites", in: managedContext)!
+            let favoriteArtist = NSManagedObject(entity: entity, insertInto: managedContext)
+
+            favoriteArtist.setValue(artistName, forKey: "favoriteArtist")
+            favoriteArtist.setValue(collectionName, forKey: "favoriteCollection")
+            favoriteArtist.setValue(trackName, forKey: "favoriteTrackName")
+
+            do {
+                try managedContext.save()
+                print("Favorite artist saved.")
+            } catch let error as NSError {
+                print("Could not save favorite artist. \(error), \(error.userInfo)")
+            }
+        }
+
+        func deleteFavoriteArtist(artistName: String, collectionName: String, trackName: String) {
+            let managedContext = AppDelegate.containerPersistent.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ArtistFavorites")
+            fetchRequest.predicate = NSPredicate(format: "favoriteArtist == %@ AND favoriteCollection == %@ AND favoriteTrackName == %@", artistName, collectionName, trackName)
+
+            do {
+                let results = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
+                if let favoriteArtist = results?.first {
+                    managedContext.delete(favoriteArtist)
+                    try managedContext.save()
+                    print("Favorite artist deleted.")
+                }
+            } catch let error as NSError {
+                print("Could not delete favorite artist. \(error), \(error.userInfo)")
+            }
+        }
+
+        func isFavoriteArtist(artistName: String, collectionName: String, trackName: String) -> Bool {
+            let managedContext = AppDelegate.containerPersistent.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ArtistFavorites")
+            fetchRequest.predicate = NSPredicate(format: "favoriteArtist == %@ AND favoriteCollection == %@ AND favoriteTrackName == %@", artistName, collectionName, trackName)
+
+            do {
+                let count = try managedContext.count(for: fetchRequest)
+                return count > 0
+            } catch let error as NSError {
+                print("Could not fetch favorite artist. \(error), \(error.userInfo)")
+                return false
+            }
+        }
     
-    func saveDataToCoreData(source: Results?) {
-        guard let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else {
-            return
-        }
-        
-        guard let details = source else { return }
-        let entity = NSEntityDescription.entity(forEntityName: "ArtistFavorites", in: context)
-        let object = NSManagedObject(entity: entity!, insertInto: context)
-        
-        object.setValue(details.artistName, forKey: "favoriteArtist")
-        object.setValue(details.trackName, forKey: "favoriteSong")
-        object.setValue(details.collectionName, forKey: "favoriteCollection")
-        object.setValue(details.collectionPrice, forKey: "favoriteCollectionPrice")
-        object.setValue(details.trackPrice, forKey: "favoriteTrackPrice")
-        object.setValue(details.primaryGenreName, forKey: "favoriteKind")
-        
-        do {
-            try context.save()
-            print("Veriler Core Data'ya kaydedildi.")
-            delegate?.didSaveDataToCoreData()
-        } catch {
-            print("Verileri kaydetme hatası: \(error.localizedDescription)")
-        }
-    }
 }
 
-extension DetailInteractor: DetailInteractorOutputProtocol {
-    func saveDataToCoreData() {
-        // Implementation not required
-    }
-}
-//
+
 //import Foundation
 //import iTunesMusicAPI
 //
@@ -80,4 +136,6 @@ extension DetailInteractor: DetailInteractorOutputProtocol {
 //
 //
 //}
+
+
 

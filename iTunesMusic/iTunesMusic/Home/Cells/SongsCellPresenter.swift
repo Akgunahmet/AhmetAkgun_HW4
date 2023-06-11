@@ -7,7 +7,6 @@
 
 
 import Foundation
-import UIKit
 import iTunesMusicAPI
 import SDWebImage
 import AVFoundation
@@ -67,7 +66,7 @@ extension SongsCellPresenter: SongsCellPresenterProtocol {
 
         view?.setTrackName(songs.trackName ?? "")
         view?.setArtistName(songs.artistName ?? "")
-        view?.setCollectionName(songs.collectionName ?? "")
+        view?.setCollectionName("Collection: \(String(describing: songs.collectionName ?? ""))")
         updateButtonImage()
         
     }

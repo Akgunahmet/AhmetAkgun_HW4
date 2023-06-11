@@ -60,6 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    static var containerPersistent: NSPersistentContainer {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("AppDelegate not found")
+        }
+        return appDelegate.persistentContainer
+    }
 
     // MARK: - Core Data Saving support
 

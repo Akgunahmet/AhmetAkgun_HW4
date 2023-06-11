@@ -32,7 +32,6 @@ final class HomeRouter {
          router.viewController = view
          return view
      }
-    
 }
 
 extension HomeRouter: HomeRouterProtocol {
@@ -50,8 +49,6 @@ extension HomeRouter: HomeRouterProtocol {
     }
     
 }
-
-
 
 
 
