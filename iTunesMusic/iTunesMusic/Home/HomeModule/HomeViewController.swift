@@ -15,33 +15,47 @@ protocol HomeViewControllerProtocol: AnyObject {
     func showLoadingView()
     func hideLoadingView()
     func showError(_ message: String)
+    func setTitle(_ title: String)
 }
 
 class HomeViewController: BaseViewController  {
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var searchBar: UISearchBar!
-    var presenter: HomePresenterProtocol!
+    
     private var searchTimer: Timer?
     private let searchDelay: TimeInterval = 1.3
+    var presenter: HomePresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter?.viewDidLoad()
+        searchBarView()
+        navigationController?.navigationBar.barTintColor = .black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+
+        setAccessiblityIdentifiers()
+
+    }
+    
+    func searchBarView() {
         searchBar.layer.borderWidth = 0
         searchBar.backgroundImage = UIImage()
         searchBar.barTintColor = UIColor.white
         searchBar.searchTextField.backgroundColor = UIColor.white
         searchBar.searchTextField.textColor = UIColor.black
-        navigationController?.navigationBar.barTintColor = .black
-
     }
     
     private func performSearch(with searchTerm: String) {
             let cleanedSearchTerm = searchTerm.removingTurkishDiacritics().uppercased()
             presenter?.fetchSongs(cleanedSearchTerm)
         }
+    func setAccessiblityIdentifiers() {
+        searchBar.searchTextField.accessibilityIdentifier = "searchBar"
+        tableView.accessibilityIdentifier = "tableView"
+    
+    }
 }
 
 extension HomeViewController: HomeViewControllerProtocol {
@@ -73,6 +87,10 @@ extension HomeViewController: HomeViewControllerProtocol {
     func hideLoadingView() {
         hideLoading()
 
+    }
+    
+    func setTitle(_ title: String) {
+        self.title = title
     }
 }
 

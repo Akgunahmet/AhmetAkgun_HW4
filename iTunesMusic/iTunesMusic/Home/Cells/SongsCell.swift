@@ -26,9 +26,10 @@ final class SongsCell: UITableViewCell {
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var collectionName: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    
     @IBOutlet weak var favoriteImage: UIImageView!
+    
     var cellPresenter: SongsCellPresenterProtocol! {
+        
     didSet {
             cellPresenter.load()
         }
@@ -79,6 +80,7 @@ extension SongsCell: SongsCellProtocol {
     }
     
 }
+
 
 
 //import UIKit

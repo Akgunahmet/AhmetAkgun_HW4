@@ -36,6 +36,5 @@ extension HomeInteractor: HomeInteractorProtocol {
             
         }
     }
-    
 }
 

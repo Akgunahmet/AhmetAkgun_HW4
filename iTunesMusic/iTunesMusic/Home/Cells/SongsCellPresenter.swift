@@ -93,7 +93,7 @@ extension SongsCellPresenter: SongsCellPresenterProtocol {
         audioPlayer?.pause()
         isPlaying = false
         DispatchQueue.main.async { [weak self] in
-            self?.view?.setButtonImage(UIImage(named: "playy-2"))
+            self?.view?.setButtonImage(UIImage(named: "play"))
         }
     }
     
@@ -121,9 +121,9 @@ extension SongsCellPresenter: SongsCellPresenterProtocol {
             guard let self = self else { return }
 
             if self.isPlaying {
-                self.view?.setButtonImage(UIImage(named: "pausee-2"))
+                self.view?.setButtonImage(UIImage(named: "pause"))
             } else {
-                self.view?.setButtonImage(UIImage(named: "playy-2"))
+                self.view?.setButtonImage(UIImage(named: "play"))
             }
         }
     }

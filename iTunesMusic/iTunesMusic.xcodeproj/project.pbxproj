@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E45A951A2A2F888100E3471A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = E45A95192A2F888100E3471A /* SDWebImage */; };
 		E45A951C2A2FA7A700E3471A /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45A951B2A2FA7A700E3471A /* HomeInteractor.swift */; };
 		E45A951E2A2FA7BD00E3471A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45A951D2A2FA7BD00E3471A /* HomePresenter.swift */; };
 		E45A95202A2FA7D100E3471A /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45A951F2A2FA7D100E3471A /* HomeRouter.swift */; };
@@ -45,6 +44,8 @@
 		E4E25F322A31F6C20070F4DE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E25F302A31F6C20070F4DE /* DetailViewController.swift */; };
 		E4E25F332A31F6C20070F4DE /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E25F312A31F6C20070F4DE /* DetailViewController.xib */; };
 		E4E25F352A320FC90070F4DE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E25F342A320FC90070F4DE /* AVFoundation.framework */; };
+		E4FDB8CB2A37B53C009FC4B7 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = E4FDB8CA2A37B53C009FC4B7 /* SDWebImage */; };
+		E4FDB8CD2A37B54A009FC4B7 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = E4FDB8CC2A37B54A009FC4B7 /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E45A951A2A2F888100E3471A /* SDWebImage in Frameworks */,
+				E4FDB8CB2A37B53C009FC4B7 /* SDWebImage in Frameworks */,
 				E47E08BF2A2E853E00A3A3AA /* iTunesMusicAPI in Frameworks */,
 				E4E25F352A320FC90070F4DE /* AVFoundation.framework in Frameworks */,
 			);
@@ -123,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4FDB8CD2A37B54A009FC4B7 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +323,7 @@
 			name = iTunesMusic;
 			packageProductDependencies = (
 				E47E08BE2A2E853E00A3A3AA /* iTunesMusicAPI */,
-				E45A95192A2F888100E3471A /* SDWebImage */,
+				E4FDB8CA2A37B53C009FC4B7 /* SDWebImage */,
 			);
 			productName = iTunesMusic;
 			productReference = E47E08862A2E841000A3A3AA /* iTunesMusic.app */;
@@ -341,6 +343,9 @@
 				E47E08A12A2E841100A3A3AA /* PBXTargetDependency */,
 			);
 			name = iTunesMusicTests;
+			packageProductDependencies = (
+				E4FDB8CC2A37B54A009FC4B7 /* SDWebImage */,
+			);
 			productName = iTunesMusicTests;
 			productReference = E47E089F2A2E841100A3A3AA /* iTunesMusicTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -396,7 +401,7 @@
 			);
 			mainGroup = E47E087D2A2E841000A3A3AA;
 			packageReferences = (
-				E45A95182A2F888100E3471A /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				E4FDB8C92A37B53C009FC4B7 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = E47E08872A2E841000A3A3AA /* Products */;
 			projectDirPath = "";
@@ -813,7 +818,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E45A95182A2F888100E3471A /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		E4FDB8C92A37B53C009FC4B7 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -824,14 +829,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E45A95192A2F888100E3471A /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E45A95182A2F888100E3471A /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
-		};
 		E47E08BE2A2E853E00A3A3AA /* iTunesMusicAPI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = iTunesMusicAPI;
+		};
+		E4FDB8CA2A37B53C009FC4B7 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4FDB8C92A37B53C009FC4B7 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		E4FDB8CC2A37B54A009FC4B7 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4FDB8C92A37B53C009FC4B7 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 

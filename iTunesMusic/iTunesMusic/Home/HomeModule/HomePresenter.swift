@@ -46,7 +46,7 @@ extension HomePresenter: HomePresenterProtocol {
     
     func viewDidLoad() {
         view.setupTableView()
-        
+        view.setTitle("iTunes")
     }
     
     func didSelectRowAt(index: Int) {
