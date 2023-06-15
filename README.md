@@ -1,5 +1,6 @@
 # iTunesMusic App <br>
    
+![iTunesMusic](https://github.com/Akgunahmet/AhmetAkgun_HW4/assets/116914693/5d3c0256-3adc-44de-9b3f-7821907d6c27)
 
 
  "Explore the world of music with the user-friendly iTunes Music Application. Easily search for songs, artists, and albums, and enjoy a vast music library covering various genres. Browse detailed information about albums and songs, and save your favorite tracks. Indulge in a high-quality audio playback experience with essential controls and discover new music recommendations. Experience the joy of music and enrich your life." <br><br>
