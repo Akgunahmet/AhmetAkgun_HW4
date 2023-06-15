@@ -9,15 +9,21 @@
 import Foundation
 
 protocol SplashInteractorProtocol {
+    
     func checkInternetConnection()
+    
 }
 
 protocol SplashInteractorOutputProtocol {
+    
     func internetConnection(status: Bool)
+    
 }
 
 final class SplashInteractor {
+    
     var output: SplashInteractorOutputProtocol?
+    
 }
 
 extension SplashInteractor: SplashInteractorProtocol {

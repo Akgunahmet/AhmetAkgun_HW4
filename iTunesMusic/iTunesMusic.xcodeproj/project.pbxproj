@@ -24,13 +24,16 @@
 		E45FD4D92A314E2200D4F84F /* SongsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E45FD4D72A314E2200D4F84F /* SongsCell.xib */; };
 		E45FD4DB2A314EA900D4F84F /* SongsCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45FD4DA2A314EA900D4F84F /* SongsCellPresenter.swift */; };
 		E45FD4DD2A31577D00D4F84F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45FD4DC2A31577D00D4F84F /* ViewController.swift */; };
+		E472DF9A2A3A39CE00CF3442 /* MockHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DF992A3A39CE00CF3442 /* MockHomeInteractor.swift */; };
+		E472DF9C2A3A3D5D00CF3442 /* MockHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DF9B2A3A3D5D00CF3442 /* MockHomeViewController.swift */; };
+		E472DF9E2A3A3D6A00CF3442 /* MockHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DF9D2A3A3D6A00CF3442 /* MockHomeRouter.swift */; };
+		E472DFA02A3A3D7700CF3442 /* MockHomePresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DF9F2A3A3D7700CF3442 /* MockHomePresenterTest.swift */; };
 		E47E088A2A2E841000A3A3AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47E08892A2E841000A3A3AA /* AppDelegate.swift */; };
 		E47E088C2A2E841000A3A3AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47E088B2A2E841000A3A3AA /* SceneDelegate.swift */; };
 		E47E08912A2E841000A3A3AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47E088F2A2E841000A3A3AA /* Main.storyboard */; };
 		E47E08942A2E841000A3A3AA /* iTunesMusic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E47E08922A2E841000A3A3AA /* iTunesMusic.xcdatamodeld */; };
 		E47E08962A2E841100A3A3AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E47E08952A2E841100A3A3AA /* Assets.xcassets */; };
 		E47E08992A2E841100A3A3AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47E08972A2E841100A3A3AA /* LaunchScreen.storyboard */; };
-		E47E08A42A2E841100A3A3AA /* iTunesMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47E08A32A2E841100A3A3AA /* iTunesMusicTests.swift */; };
 		E47E08AE2A2E841100A3A3AA /* iTunesMusicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47E08AD2A2E841100A3A3AA /* iTunesMusicUITests.swift */; };
 		E47E08B02A2E841100A3A3AA /* iTunesMusicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47E08AF2A2E841100A3A3AA /* iTunesMusicUITestsLaunchTests.swift */; };
 		E47E08BF2A2E853E00A3A3AA /* iTunesMusicAPI in Frameworks */ = {isa = PBXBuildFile; productRef = E47E08BE2A2E853E00A3A3AA /* iTunesMusicAPI */; };
@@ -83,6 +86,10 @@
 		E45FD4D72A314E2200D4F84F /* SongsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongsCell.xib; sourceTree = "<group>"; };
 		E45FD4DA2A314EA900D4F84F /* SongsCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsCellPresenter.swift; sourceTree = "<group>"; };
 		E45FD4DC2A31577D00D4F84F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E472DF992A3A39CE00CF3442 /* MockHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeInteractor.swift; sourceTree = "<group>"; };
+		E472DF9B2A3A3D5D00CF3442 /* MockHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeViewController.swift; sourceTree = "<group>"; };
+		E472DF9D2A3A3D6A00CF3442 /* MockHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeRouter.swift; sourceTree = "<group>"; };
+		E472DF9F2A3A3D7700CF3442 /* MockHomePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomePresenterTest.swift; sourceTree = "<group>"; };
 		E47E08862A2E841000A3A3AA /* iTunesMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47E08892A2E841000A3A3AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E47E088B2A2E841000A3A3AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +99,6 @@
 		E47E08982A2E841100A3A3AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E47E089A2A2E841100A3A3AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E47E089F2A2E841100A3A3AA /* iTunesMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E47E08A32A2E841100A3A3AA /* iTunesMusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesMusicTests.swift; sourceTree = "<group>"; };
 		E47E08A92A2E841100A3A3AA /* iTunesMusicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesMusicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47E08AD2A2E841100A3A3AA /* iTunesMusicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesMusicUITests.swift; sourceTree = "<group>"; };
 		E47E08AF2A2E841100A3A3AA /* iTunesMusicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesMusicUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -255,7 +261,7 @@
 		E47E08A22A2E841100A3A3AA /* iTunesMusicTests */ = {
 			isa = PBXGroup;
 			children = (
-				E47E08A32A2E841100A3A3AA /* iTunesMusicTests.swift */,
+				E49238532A39CD0400F8DC33 /* Mock */,
 			);
 			path = iTunesMusicTests;
 			sourceTree = "<group>";
@@ -275,6 +281,17 @@
 				E4E25F342A320FC90070F4DE /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E49238532A39CD0400F8DC33 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				E472DF992A3A39CE00CF3442 /* MockHomeInteractor.swift */,
+				E472DF9B2A3A3D5D00CF3442 /* MockHomeViewController.swift */,
+				E472DF9D2A3A3D6A00CF3442 /* MockHomeRouter.swift */,
+				E472DF9F2A3A3D7700CF3442 /* MockHomePresenterTest.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		E49FFEF92A30F48A00AC8CEF /* Base */ = {
@@ -482,7 +499,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E47E08A42A2E841100A3A3AA /* iTunesMusicTests.swift in Sources */,
+				E472DF9C2A3A3D5D00CF3442 /* MockHomeViewController.swift in Sources */,
+				E472DF9A2A3A39CE00CF3442 /* MockHomeInteractor.swift in Sources */,
+				E472DFA02A3A3D7700CF3442 /* MockHomePresenterTest.swift in Sources */,
+				E472DF9E2A3A3D6A00CF3442 /* MockHomeRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

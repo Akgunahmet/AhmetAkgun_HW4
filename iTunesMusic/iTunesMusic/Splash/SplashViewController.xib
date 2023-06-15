@@ -17,22 +17,22 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashVC" translatesAutoresizingMaskIntoConstraints="NO" id="upC-T0-avV">
-                    <rect key="frame" x="25" y="147" width="352" height="461"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="screen" translatesAutoresizingMaskIntoConstraints="NO" id="upC-T0-avV">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="upC-T0-avV" secondAttribute="bottom" constant="210" id="BMB-IY-1pH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="upC-T0-avV" secondAttribute="trailing" constant="16" id="L7x-7f-Bkn"/>
-                <constraint firstItem="upC-T0-avV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="bxZ-ZY-qFM"/>
-                <constraint firstItem="upC-T0-avV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="88" id="kCW-6J-kPs"/>
+                <constraint firstItem="upC-T0-avV" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Xxv-9i-6tE"/>
+                <constraint firstAttribute="bottom" secondItem="upC-T0-avV" secondAttribute="bottom" id="Zh9-si-Gcf"/>
+                <constraint firstItem="upC-T0-avV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fjd-mt-KL7"/>
+                <constraint firstItem="upC-T0-avV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nXB-Kt-Yr3"/>
             </constraints>
             <point key="canvasLocation" x="84.732824427480907" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>
-        <image name="splashVC" width="786" height="820"/>
+        <image name="screen" width="500" height="500"/>
     </resources>
 </document>

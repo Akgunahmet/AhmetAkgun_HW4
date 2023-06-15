@@ -38,7 +38,6 @@ extension DetailInteractor: DetailInteractorProtocol {
 
     func showFavoriteArtist(completion: @escaping ([String]) -> Void) {
          
-          
           let managedContext = AppDelegate.containerPersistent.viewContext
           let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ArtistFavorites")
 
@@ -115,27 +114,6 @@ extension DetailInteractor: DetailInteractorProtocol {
     
 }
 
-
-//import Foundation
-//import iTunesMusicAPI
-//
-//// MARK: - Protocol
-//
-//protocol DetailInteractorProtocol {
-//
-//}
-//
-//protocol DetailInteractorOutputProtocol {
-//    func fetchNewsDetailOutput(_ result: Result<[Results], Error>)
-//}
-//
-//
-//final class DetailInteractor {
-//    var output: HomeInteractorOutput?
-//
-//
-//
-//}
 
 
 

@@ -12,32 +12,29 @@ import iTunesMusicAPI
 protocol HomePresenterProtocol: AnyObject {
     
     func viewDidLoad()
-    var numberOfItems: Int { get }
     func song(_ index: Int) -> Results?
     func fetchSongs(_ word: String)
-   func didSelectRowAt(index: Int)
-    
+    func didSelectRowAt(index: Int)
+    var numberOfItems: Int { get }
+    var songs: [ Results] { get set }
 }
 
 class HomePresenter {
-    var songs: [Results] = []
-    unowned var view: HomeViewControllerProtocol
-    let router: HomeRouterProtocol!
-    var interactor: HomeInteractorProtocol!
     
+    unowned var view: HomeViewControllerProtocol
+    var songs: [Results] = []
+    var interactor: HomeInteractorProtocol!
+    let router: HomeRouterProtocol!
     
     init(
         view: HomeViewControllerProtocol,
         router: HomeRouterProtocol,
         interactor: HomeInteractorProtocol
-       
     ) {
         self.view = view
         self.router = router
         self.interactor = interactor
-        
     }
-    
 }
 
 extension HomePresenter: HomePresenterProtocol {
@@ -54,12 +51,10 @@ extension HomePresenter: HomePresenterProtocol {
         router.navigate(.detail(source: source))
     }
     
-
     func fetchSongs(_ word: String) {
         view.showLoadingView()
         interactor.fetchSearchSongs(word)
     }
-
     
     func song(_ index: Int) -> Results? {
         return songs[safe: index]
@@ -68,10 +63,9 @@ extension HomePresenter: HomePresenterProtocol {
     var numberOfItems: Int {
         songs.count
     }
-    
-
 }
 // MARK: - Extension HomeInterOutput
+
 extension HomePresenter: HomeInteractorOutput {
     
     func fetchSongsOutput(_ result: SongsSourcesResult) {
@@ -84,5 +78,4 @@ extension HomePresenter: HomeInteractorOutput {
             view.showError(error.localizedDescription)
         }
     }
-    
 }
