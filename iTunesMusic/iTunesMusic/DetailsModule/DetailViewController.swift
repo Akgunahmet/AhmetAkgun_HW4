@@ -57,6 +57,8 @@ class DetailViewController: UIViewController {
     // MARK: - Action
     
     private func setAccessiblityIdentifiers() {
+        
+        favoriteListButton.accessibilityIdentifier = "detailFavoriteButton"
         playButton.accessibilityIdentifier = "detailPlayButton"
         
     }
