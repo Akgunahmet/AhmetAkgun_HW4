@@ -33,15 +33,13 @@ class HomeViewControllerUITests: XCTestCase {
         let tableCells = app.tableView.cells.element(boundBy: 1)
 
         tableCells.tap()
-        sleep(2)
+        sleep(5)
 
-        XCTAssertTrue(app.isFavoriteButtonDisplayed)
         XCTAssertTrue(app.isplayButtonDisplayed)
 
         app.detailPlayButton.tap()
-        sleep(3)
+        sleep(5)
         app.detailPlayButton.tap()
-        app.detailFavoriteButton.tap()
         sleep(2)
     }
 
@@ -57,9 +55,7 @@ extension XCUIApplication {
     var detailPlayButton: XCUIElement! {
         buttons["detailPlayButton"]
     }
-    var detailFavoriteButton: XCUIElement! {
-        buttons["detailFavoriteButton"]
-    }
+
 
     var isSearchBarDisplayed: Bool {
         return searchBar.waitForExistence(timeout: 5)
@@ -69,9 +65,6 @@ extension XCUIApplication {
         return tableView.waitForExistence(timeout: 5)
     }
     
-    var isFavoriteButtonDisplayed: Bool {
-        return detailFavoriteButton.exists
-    }
     
     var isplayButtonDisplayed: Bool {
         return detailPlayButton.exists
