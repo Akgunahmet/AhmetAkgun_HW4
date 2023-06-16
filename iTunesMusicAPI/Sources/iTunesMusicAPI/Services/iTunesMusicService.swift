@@ -12,9 +12,14 @@ enum Constants: String {
     case iTunesAPIBaseURL = "https://itunes.apple.com"
 }
 
+// MARK: - iTunesMusicServiceProtocol
+
 public protocol iTunesMusicServiceProtocol: AnyObject {
     func searchSongs(_ word: String, completion: @escaping (Result<[Results], Error>) -> Void)
 }
+
+// MARK: - iTunesMusicService
+
 public class iTunesMusicService: iTunesMusicServiceProtocol {
     public init() {}
     

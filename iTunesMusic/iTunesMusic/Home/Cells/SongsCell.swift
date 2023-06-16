@@ -37,7 +37,7 @@ final class SongsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+       
         self.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         UIView.animate(withDuration: 0.5) {
             self.transform = CGAffineTransform.identity

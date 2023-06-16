@@ -30,6 +30,7 @@ extension HomeInteractor: HomeInteractorProtocol {
 // MARK: - Function
     
     func fetchSearchSongs(_ word: String) {
+        
         service.searchSongs(word) { [weak self] result in
             guard let self else { return }
             self.output?.fetchSongsOutput(result)

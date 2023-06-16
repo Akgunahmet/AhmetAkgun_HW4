@@ -10,7 +10,13 @@ import Foundation
 
 final class MockHomeViewController: HomeViewControllerProtocol {
     
-   
+    var isInvokedShowAlert = false
+    var invokedShowAlert = 0
+    func showAlert(title: String) {
+        isInvokedShowAlert = true
+        _ = 1
+    }
+    
     var isInvokedShowLoading = false
     var invokedShowLoadingCount = 0
     

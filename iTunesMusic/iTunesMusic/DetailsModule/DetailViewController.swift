@@ -22,12 +22,11 @@ protocol DetailViewControllerProtocol: AnyObject {
     func setPlaybackProgress(_ progress: Float)
     func setFavoriteButtonImage(isFavorite: Bool)
     func showAlert(title: String, message: String)
-    
 }
 
 class DetailViewController: UIViewController {
     
-// MARK: - Outlet
+    // MARK: - Outlet
     
     @IBOutlet weak var artistImage: UIImageView!
     @IBOutlet weak var artistNameLabel: UILabel!
@@ -38,53 +37,72 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var collectionPriceLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var favoriteButton: UIButton!
-
-
+    @IBOutlet weak var favoriteListButton: UIButton!
     
+    private var favoriteBarButtonItem: UIBarButtonItem?
     var presenter: DetailPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playButton.accessibilityIdentifier = "detailPlayButton"
-        favoriteButton.accessibilityIdentifier = "detailFavoriteButton"
+        setAccessiblityIdentifiers()
         presenter.viewDidLoad()
         presenter.resetPlaybackProgress()
         navigationController?.navigationBar.tintColor = UIColor.systemGray5
+        setupFavoriteBarButtonItem()
+        favoriteBarButtonItem?.isHidden = false
+        favoriteBarButtonItem?.isEnabled = true
+        setFavoriteButtonImage(isFavorite: presenter.isFavorite)
+    }
+    
+    // MARK: - Action
+    
+    private func setAccessiblityIdentifiers() {
+        playButton.accessibilityIdentifier = "detailPlayButton"
+        favoriteListButton.accessibilityIdentifier = "detailFavoriteButton"
         
     }
     
-// MARK: - Action
+    @objc private func favoriteButtonClicked() {
+        let artistName = artistNameLabel.text ?? ""
+        let collectionName = collectionNameLabel.text ?? ""
+        let trackName = trackNameLabel.text ?? ""
+        
+        if presenter.isFavorite {
+            presenter.deleteFavoriteArtist(artistName: artistName, collectionName: collectionName, trackName: trackName)
+        } else {
+            presenter.saveFavoriteArtist(artistName: artistName, collectionName: collectionName, trackName: trackName)
+        }
+    }
     
     @IBAction func showFavoriteArtist(_ sender: Any) {
-
-        presenter.showFavoriteArtistsPopUp { artistInfoList in
         
+        presenter.showFavoriteArtistsPopUp { artistInfoList in
+            
             let popupViewController = UIAlertController(title: "Favorite Artists", message: nil, preferredStyle: .alert)
-
+            
             let subview = (popupViewController.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
             subview.backgroundColor = UIColor.darkGray
-
+            
             let attributedTitle = NSAttributedString(string: "Favorite Artists", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
             popupViewController.setValue(attributedTitle, forKey: "attributedTitle")
-
+            
             for artistInfo in artistInfoList {
-
+                
                 let artistAction = UIAlertAction(title: artistInfo, style: .default, handler: nil)
                 artistAction.setValue(UIColor.white, forKey: "titleTextColor")
-
+                
                 popupViewController.addAction(artistAction)
             }
-
+            
             let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
             closeAction.setValue(UIColor.white, forKey: "titleTextColor")
             popupViewController.addAction(closeAction)
-
+            
             self.present(popupViewController, animated: true, completion: nil)
         }
-
+        
     }
-
+    
     @IBAction func playButtonClicked(_ sender: Any) {
         
         presenter.togglePlayPause()
@@ -93,27 +111,16 @@ class DetailViewController: UIViewController {
     
     @IBAction func skipForwardButtonClicked(_ sender: Any) {
         
-          presenter.skipForward()
+        presenter.skipForward()
         
-      }
-      
-      @IBAction func skipBackwardButtonClicked(_ sender: Any) {
-          
-          presenter.skipBackward()
-          
-      }
-    
-    @IBAction func favoriteClickedButton(_ sender: Any) {
-        let artistName = artistNameLabel.text ?? ""
-          let collectionName = collectionNameLabel.text ?? ""
-          let trackName = trackNameLabel.text ?? ""
-          
-          if presenter.isFavorite {
-              presenter.deleteFavoriteArtist(artistName: artistName, collectionName: collectionName, trackName: trackName)
-          } else {
-              presenter.saveFavoriteArtist(artistName: artistName, collectionName: collectionName, trackName: trackName)
-          }
     }
+    
+    @IBAction func skipBackwardButtonClicked(_ sender: Any) {
+        
+        presenter.skipBackward()
+        
+    }
+    
 }
 // MARK: - Extension
 
@@ -122,19 +129,26 @@ extension DetailViewController: DetailViewControllerProtocol {
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
         present(alert, animated: true, completion: nil)
     }
+  
     
+    private func setupFavoriteBarButtonItem() {
+        favoriteBarButtonItem = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(favoriteButtonClicked))
+        navigationItem.rightBarButtonItem = favoriteBarButtonItem
+    }
     func setFavoriteButtonImage(isFavorite: Bool) {
         let buttonImage = isFavorite ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
-        favoriteButton.setImage(buttonImage, for: .normal)
+
+        favoriteBarButtonItem?.tintColor = UIColor(red: 225/255, green: 239/255, blue: 2/255, alpha: 1.0)
+        favoriteBarButtonItem?.image = buttonImage
         
     }
-   
-// MARK: - Function
+    
+    // MARK: - Function
     
     func setPlaybackProgress(_ progress: Float) {
         DispatchQueue.main.async {
@@ -177,5 +191,3 @@ extension DetailViewController: DetailViewControllerProtocol {
         playButton.setImage(image, for: .normal)
     }
 }
-
-

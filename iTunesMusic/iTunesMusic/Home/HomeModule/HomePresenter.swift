@@ -4,6 +4,7 @@
 //
 //  Created by Ahmet Akgün on 6.06.2023.
 //
+
 import Foundation
 import iTunesMusicAPI
 
@@ -17,6 +18,7 @@ protocol HomePresenterProtocol: AnyObject {
     func didSelectRowAt(index: Int)
     var numberOfItems: Int { get }
     var songs: [ Results] { get set }
+    
 }
 
 class HomePresenter {
@@ -39,7 +41,7 @@ class HomePresenter {
 
 extension HomePresenter: HomePresenterProtocol {
     
-// MARK: - Function
+    // MARK: - Function
     
     func viewDidLoad() {
         view.setupTableView()
@@ -74,8 +76,13 @@ extension HomePresenter: HomeInteractorOutput {
         case .success(let songs):
             self.songs = songs
             view.reloadData()
+            if songs.isEmpty {
+                view.showAlert(title: "Sonuç bulunamadı")
+            }
         case .failure(let error):
+            
             view.showError(error.localizedDescription)
+            
         }
     }
 }

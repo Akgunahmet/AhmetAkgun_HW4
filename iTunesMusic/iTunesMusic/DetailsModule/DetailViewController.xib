@@ -14,7 +14,7 @@
                 <outlet property="artistNameLabel" destination="g5Y-aF-2mR" id="pgx-4n-B0N"/>
                 <outlet property="collectionNameLabel" destination="wzh-93-ND5" id="jMT-80-TeG"/>
                 <outlet property="collectionPriceLabel" destination="jWK-lD-jJ1" id="lxR-Cj-Fl3"/>
-                <outlet property="favoriteButton" destination="4fq-KU-Hau" id="L8r-Sv-cVW"/>
+                <outlet property="favoriteListButton" destination="ayO-Od-Bz5" id="Ze1-51-g1q"/>
                 <outlet property="playButton" destination="bQ2-Te-7Yu" id="apB-JX-K7v"/>
                 <outlet property="primaryGenreNameLabel" destination="6El-NU-bhh" id="sDd-TE-KkW"/>
                 <outlet property="progressView" destination="JNv-i2-xvj" id="8mZ-kd-gc7"/>
@@ -77,7 +77,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="109.66666666666667" height="65"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain">
-                                                <backgroundConfiguration key="background" image="back" imageContentMode="center"/>
+                                                <backgroundConfiguration key="background" image="rewind" imageContentMode="scaleAspectFill"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="skipBackwardButtonClicked:" destination="-1" eventType="touchUpInside" id="54g-tj-zaO"/>
@@ -97,8 +97,8 @@
                                             <rect key="frame" x="239.33333333333329" y="0.0" width="109.66666666666666" height="65"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain">
-                                                <backgroundConfiguration key="background" imageContentMode="left">
-                                                    <imageReference key="image" image="next" symbolScale="default"/>
+                                                <backgroundConfiguration key="background" imageContentMode="scaleAspectFill">
+                                                    <imageReference key="image" image="fastForward" symbolScale="default"/>
                                                 </backgroundConfiguration>
                                             </buttonConfiguration>
                                             <connections>
@@ -199,31 +199,14 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fq-KU-Hau">
-                    <rect key="frame" x="353" y="69" width="25" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="25" id="icE-Em-xGQ"/>
-                        <constraint firstAttribute="height" constant="25" id="v5b-kw-8qL"/>
-                    </constraints>
-                    <color key="tintColor" red="0.88278657199999999" green="0.93847531080000002" blue="0.0076952315870000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <backgroundConfiguration key="background" image="bookmark" catalog="system"/>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="favoriteClickedButton:" destination="-1" eventType="touchUpInside" id="CHC-u7-dnx"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.4866992235" green="0.47829872369999998" blue="0.49924504759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ayO-Od-Bz5" firstAttribute="top" secondItem="NLc-HF-nRg" secondAttribute="bottom" constant="50" id="5Ge-hg-GNi"/>
                 <constraint firstItem="NLc-HF-nRg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Eba-DH-rJP"/>
-                <constraint firstItem="4fq-KU-Hau" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="FS6-Go-QXf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="trf-ih-s9f" secondAttribute="trailing" constant="16" id="Hc4-79-wLV"/>
                 <constraint firstItem="dJ1-6a-xuC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Hgd-7E-tFd"/>
-                <constraint firstItem="4fq-KU-Hau" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-15" id="KtN-wI-87R"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ayO-Od-Bz5" secondAttribute="trailing" constant="140" id="NcW-r6-fdB"/>
                 <constraint firstItem="NLc-HF-nRg" firstAttribute="top" secondItem="dJ1-6a-xuC" secondAttribute="bottom" constant="50" id="OAl-ky-6XQ"/>
                 <constraint firstItem="trf-ih-s9f" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="T1Z-qO-KQN"/>
@@ -241,8 +224,7 @@
         </view>
     </objects>
     <resources>
-        <image name="back" width="100" height="100"/>
-        <image name="bookmark" catalog="system" width="110" height="128"/>
-        <image name="next" width="100" height="100"/>
+        <image name="fastForward" width="250" height="250"/>
+        <image name="rewind" width="250" height="250"/>
     </resources>
 </document>

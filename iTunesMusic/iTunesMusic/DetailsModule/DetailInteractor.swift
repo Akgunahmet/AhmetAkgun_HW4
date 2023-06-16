@@ -25,14 +25,14 @@ protocol DetailInteractorOutputProtocol {
 
 }
 
-
 final class DetailInteractor {
+    
     var output: DetailInteractorOutputProtocol?
     var presenter: DetailPresenter?
-
-
  
 }
+
+// MARK: - Extension
 
 extension DetailInteractor: DetailInteractorProtocol {
 
@@ -75,7 +75,6 @@ extension DetailInteractor: DetailInteractorProtocol {
 
             do {
                 try managedContext.save()
-                print("Favorite artist saved.")
             } catch let error as NSError {
                 print("Could not save favorite artist. \(error), \(error.userInfo)")
             }
@@ -91,7 +90,6 @@ extension DetailInteractor: DetailInteractorProtocol {
                 if let favoriteArtist = results?.first {
                     managedContext.delete(favoriteArtist)
                     try managedContext.save()
-                    print("Favorite artist deleted.")
                 }
             } catch let error as NSError {
                 print("Could not delete favorite artist. \(error), \(error.userInfo)")
@@ -111,7 +109,6 @@ extension DetailInteractor: DetailInteractorProtocol {
                 return false
             }
         }
-    
 }
 
 

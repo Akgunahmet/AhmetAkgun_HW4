@@ -14,7 +14,6 @@ protocol SplashPresenterProtocol: AnyObject {
     
 }
 
-
 final class SplashPresenter: SplashPresenterProtocol {
 
     unowned var view: SplashViewControllerProtocol!

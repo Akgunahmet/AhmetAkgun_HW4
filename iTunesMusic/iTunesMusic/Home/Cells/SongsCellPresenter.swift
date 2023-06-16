@@ -29,7 +29,6 @@ final class SongsCellPresenter {
     static var currentPlayingCell: SongsCell?
     weak var view: SongsCellProtocol?
     
-    
     init(
         view: SongsCellProtocol?,
         songs: Results
@@ -51,7 +50,7 @@ extension SongsCellPresenter: SongsCellPresenterProtocol {
     
     func load() {
         if isPlaying {
-            pause() // Stop the currently playing audio
+            pause()
         }
         
         if let url = URL(string: artworkURL) {
@@ -73,7 +72,7 @@ extension SongsCellPresenter: SongsCellPresenterProtocol {
     
     func togglePlayback() {
         if let currentPlayingCell = SongsCellPresenter.currentPlayingCell {
-            // Eğer başka bir hücrede ses çalınıyorsa, çalmayı durdur
+           
             if currentPlayingCell != view as? SongsCell {
                 currentPlayingCell.cellPresenter.pause()
             }
@@ -85,7 +84,7 @@ extension SongsCellPresenter: SongsCellPresenterProtocol {
             play()
         }
         
-        SongsCellPresenter.currentPlayingCell = view as? SongsCell // Şu anki hücreyi çalan hücre olarak belirle
+        SongsCellPresenter.currentPlayingCell = view as? SongsCell
         updateButtonImage()
     }
     

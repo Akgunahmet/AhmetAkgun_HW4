@@ -5,15 +5,11 @@
 //  Created by Ahmet Akgün on 6.06.2023.
 //
 
-
-
 import Foundation
 
-protocol DetailRouterProtocol {
+// MARK: - Class
 
-}
-
-final class DetailRouter: DetailRouterProtocol {
+final class DetailRouter{
 
     weak var viewController: DetailViewController?
 
@@ -26,7 +22,6 @@ final class DetailRouter: DetailRouterProtocol {
          router.viewController = view
          return view
      }
-
 }
 
 

@@ -10,7 +10,6 @@ import iTunesMusicAPI
 import SDWebImage
 import AVFoundation
 
-
 // MARK: - Protocol
 
 protocol DetailPresenterProtocol {
@@ -37,7 +36,7 @@ final class DetailPresenter {
     private var playbackProgressObserver: Any?
     unowned var view: DetailViewControllerProtocol!
     var source: Results?
-    let router: DetailRouterProtocol!
+    let router: DetailRouter!
     var interactor: DetailInteractorProtocol!
     var isFavorite = false {
         didSet {
@@ -45,11 +44,11 @@ final class DetailPresenter {
         }
     }
   
-    // MARK: - Initialize
+// MARK: - Initialize
     
     init(
         view: DetailViewControllerProtocol,
-        router: DetailRouterProtocol,
+        router: DetailRouter,
         interactor: DetailInteractorProtocol
     ) {
         self.view = view
@@ -66,7 +65,7 @@ extension DetailPresenter: DetailPresenterProtocol {
         interactor.showFavoriteArtist(completion: completion)
     }
     
-    // MARK: - Function
+// MARK: - Function
     
     func viewDidLoad() {
         
@@ -128,7 +127,7 @@ extension DetailPresenter: DetailPresenterProtocol {
             let playerItem = AVPlayerItem(url: previewURL)
             audioPlayer = AVPlayer(playerItem: playerItem)
             addPlaybackProgressObserver()
-            audioPlayer?.play() // Ses çalmasını burada başlatıyoruz
+            audioPlayer?.play()
         } else {
             addPlaybackProgressObserver()
             audioPlayer?.play()
@@ -150,7 +149,7 @@ extension DetailPresenter: DetailPresenterProtocol {
     func resetPlaybackProgress() {
         DispatchQueue.main.async { [weak self] in
             self?.view?.setPlaybackProgress(0.0)
-            self?.audioPlayer?.seek(to: .zero) // Şarkıyı başa sar
+            self?.audioPlayer?.seek(to: .zero)
         }
     }
     
@@ -200,23 +199,27 @@ extension DetailPresenter: DetailPresenterProtocol {
             }
         }
     }
-    
-     func skipForward() {
-          guard let player = audioPlayer else { return }
-          let currentTime = player.currentTime().seconds
-          let newTime = currentTime + 5.0
-          let timeToSeek = CMTime(seconds: newTime, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
-          player.seek(to: timeToSeek)
-      }
-      
-      func skipBackward() {
-          guard let player = audioPlayer else { return }
-          let currentTime = player.currentTime().seconds
-          let newTime = currentTime - 5.0
-          let timeToSeek = CMTime(seconds: newTime, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
-          player.seek(to: timeToSeek)
-      }
-    
+
+    func skipForward() {
+        guard let player = audioPlayer else { return }
+        let currentTime = player.currentTime().seconds
+        let newTime = currentTime + 5.0
+        let timeToSeek = CMTime(seconds: newTime, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        player.seek(to: timeToSeek) { _ in
+            self.updatePlaybackProgress()
+        }
+    }
+
+    func skipBackward() {
+        guard let player = audioPlayer else { return }
+        let currentTime = player.currentTime().seconds
+        let newTime = currentTime - 5.0
+        let timeToSeek = CMTime(seconds: newTime, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        player.seek(to: timeToSeek) { _ in
+            self.updatePlaybackProgress() 
+        }
+    }
+  
     func saveFavoriteArtist(artistName: String, collectionName: String, trackName: String) {
         interactor.saveFavoriteArtist(artistName: artistName, collectionName: collectionName, trackName: trackName)
         isFavorite = true

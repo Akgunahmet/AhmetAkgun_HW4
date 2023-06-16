@@ -27,7 +27,7 @@
 		E472DF9A2A3A39CE00CF3442 /* MockHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DF992A3A39CE00CF3442 /* MockHomeInteractor.swift */; };
 		E472DF9C2A3A3D5D00CF3442 /* MockHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DF9B2A3A3D5D00CF3442 /* MockHomeViewController.swift */; };
 		E472DF9E2A3A3D6A00CF3442 /* MockHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DF9D2A3A3D6A00CF3442 /* MockHomeRouter.swift */; };
-		E472DFA02A3A3D7700CF3442 /* MockHomePresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DF9F2A3A3D7700CF3442 /* MockHomePresenterTest.swift */; };
+		E472DFA02A3A3D7700CF3442 /* HomePresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E472DF9F2A3A3D7700CF3442 /* HomePresenterTest.swift */; };
 		E47E088A2A2E841000A3A3AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47E08892A2E841000A3A3AA /* AppDelegate.swift */; };
 		E47E088C2A2E841000A3A3AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47E088B2A2E841000A3A3AA /* SceneDelegate.swift */; };
 		E47E08912A2E841000A3A3AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E47E088F2A2E841000A3A3AA /* Main.storyboard */; };
@@ -89,7 +89,7 @@
 		E472DF992A3A39CE00CF3442 /* MockHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeInteractor.swift; sourceTree = "<group>"; };
 		E472DF9B2A3A3D5D00CF3442 /* MockHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeViewController.swift; sourceTree = "<group>"; };
 		E472DF9D2A3A3D6A00CF3442 /* MockHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeRouter.swift; sourceTree = "<group>"; };
-		E472DF9F2A3A3D7700CF3442 /* MockHomePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomePresenterTest.swift; sourceTree = "<group>"; };
+		E472DF9F2A3A3D7700CF3442 /* HomePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterTest.swift; sourceTree = "<group>"; };
 		E47E08862A2E841000A3A3AA /* iTunesMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47E08892A2E841000A3A3AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E47E088B2A2E841000A3A3AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -262,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				E49238532A39CD0400F8DC33 /* Mock */,
+				E472DF9F2A3A3D7700CF3442 /* HomePresenterTest.swift */,
 			);
 			path = iTunesMusicTests;
 			sourceTree = "<group>";
@@ -289,7 +290,6 @@
 				E472DF992A3A39CE00CF3442 /* MockHomeInteractor.swift */,
 				E472DF9B2A3A3D5D00CF3442 /* MockHomeViewController.swift */,
 				E472DF9D2A3A3D6A00CF3442 /* MockHomeRouter.swift */,
-				E472DF9F2A3A3D7700CF3442 /* MockHomePresenterTest.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -501,7 +501,7 @@
 			files = (
 				E472DF9C2A3A3D5D00CF3442 /* MockHomeViewController.swift in Sources */,
 				E472DF9A2A3A39CE00CF3442 /* MockHomeInteractor.swift in Sources */,
-				E472DFA02A3A3D7700CF3442 /* MockHomePresenterTest.swift in Sources */,
+				E472DFA02A3A3D7700CF3442 /* HomePresenterTest.swift in Sources */,
 				E472DF9E2A3A3D6A00CF3442 /* MockHomeRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

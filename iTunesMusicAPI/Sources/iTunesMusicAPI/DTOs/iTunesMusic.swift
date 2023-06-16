@@ -20,7 +20,7 @@ public struct Results: Decodable {
     public let collectionName: String?
     public let trackName: String?
     public let trackViewUrl: String?
-    public let previewUrl: String? // ses
+    public let previewUrl: String? 
     public let artworkUrl100: String?
     public let collectionPrice: Double?
     public let trackPrice: Double?
